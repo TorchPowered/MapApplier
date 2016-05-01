@@ -7,11 +7,8 @@ import cuchaz.enigma.mapping.MappingsReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.jar.JarFile;
+import java.io.*;
+import java.util.*;
 
 public final class Launch {
     public static void main(String[] args){
@@ -37,7 +34,25 @@ public final class Launch {
         }
         if(!outputJar.exists()){
             outputJar.mkdirs();
-            outputJar.createNewFile();
+            // input file 
+            FileInputStream in = new FileInputStream(new File(Launch.class.getResource("/net/torchpowered/mapapplier/.mapapplier")););
+
+            // out put file 
+            ZipOutputStream out = new ZipOutputStream(new FileOutputStream(outputJar.getAbsolutePath()));
+
+            // name the file inside the zip  file 
+            out.putNextEntry(new ZipEntry(".mapapplier")); 
+
+            // buffer size
+            byte[] b = new byte[1024];
+            int count;
+
+            while ((count = in.read(b)) > 0) {
+                System.out.println();
+                out.write(b, 0, count);
+            }
+            out.close();
+            in.close();
         }
         logger.info("=========================");
         logger.info("       MAPAPPLIER        ");
