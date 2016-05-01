@@ -36,8 +36,8 @@ public final class Launch {
             return;
         }
         if(!outputJar.exists()){
-            logger.error("Output JAR file doesn't exist!");
-            return;
+            outputJar.mkdirs();
+            outputJar.createNewFile();
         }
         logger.info("=========================");
         logger.info("       MAPAPPLIER        ");
