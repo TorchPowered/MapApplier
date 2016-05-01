@@ -17,7 +17,7 @@ class FieldConductor : Conductor {
         if (model is FieldModel) {
             val convertedModel: FieldModel = model
             val converter: CodeConverter = CodeConverter()
-            if (ctClass?.name.equals(convertedModel.getOriginalName())) {
+            if (ctClass?.name.equals(convertedModel.getDeclaringClass())) {
                 ctClass?.getDeclaredField(convertedModel.getOriginalName(), convertedModel.getOriginalDescriptor())?.fieldInfo?.descriptor = convertedModel.getMappedDescriptor()
                 converter.redirectFieldAccess(ctClass?.getDeclaredField(convertedModel.getOriginalName()), ctClass, convertedModel.getMappedName())
                 ctClass?.instrument(converter)
