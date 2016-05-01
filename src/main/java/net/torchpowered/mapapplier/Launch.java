@@ -8,10 +8,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.util.*;
+import java.net.URISyntaxException;
+import java.util.jar.JarFile;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 public final class Launch {
-    public static void main(String[] args){
+    public static void main(String[] args) throws FileNotFoundException, URISyntaxException, IOException{
         Logger logger = LoggerFactory.getLogger("MapApplier");
         if(args.length < 1){
             logger.info("Oops! You didn't startup MapApplier with any parameters. Try doing the ? or help parameter to see help guide.");
@@ -35,7 +38,7 @@ public final class Launch {
         if(!outputJar.exists()){
             outputJar.mkdirs();
             // input file 
-            FileInputStream in = new FileInputStream(new File(Launch.class.getResource("/net/torchpowered/mapapplier/.mapapplier")););
+            FileInputStream in = new FileInputStream(new File(Launch.class.getResource("/net/torchpowered/mapapplier/.mapapplier").toURI()));
 
             // out put file 
             ZipOutputStream out = new ZipOutputStream(new FileOutputStream(outputJar.getAbsolutePath()));
