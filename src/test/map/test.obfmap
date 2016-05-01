@@ -1,0 +1,12 @@
+# Comments are declared with a #.
+# This is a test of an obfuscation map.
+# Order of transformation: CLASS -> FIELD -> METHOD
+
+# Syntax for classes -> CLASS: <originalName> <newName>
+CLASS: org.example.Main net.mapapplier.example.Main
+
+# Syntax for fields -> FIELD: <declaringClassName> <originalName> <newName> <originalDesc> <newDesc>
+FIELD: net.mapapplier.example.Main thisIsAField testField Ljava/lang/String; Ljava/lang/String;
+
+# Syntax for methods -> METHOD: <declaringClassName> <originalName> <newName> <originalDesc> <newDesc>
+METHOD: net.mapapplier.example.Main printMessage print ()V ()V
