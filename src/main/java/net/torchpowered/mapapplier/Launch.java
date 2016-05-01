@@ -36,6 +36,9 @@ public final class Launch {
             return;
         }
         if(!outputJar.exists()){
+            
+            // instead of throwing an error, just create it.
+            
             outputJar.mkdirs();
             // input file 
             FileInputStream in = new FileInputStream(new File(Launch.class.getResource("/net/torchpowered/mapapplier/.mapapplier").toURI()));
